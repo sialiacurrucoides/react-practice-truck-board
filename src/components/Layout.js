@@ -12,7 +12,7 @@ function Layout() {
     const laggingDistance = 18;
     const numberOfTimePs = 3;
     const truckStepSize = 15; //vh
-    const truckLineOffset= 15;
+    const truckLineOffset= 10;
     const timeStep = 4*60*60*1000; //4 hours
     const timeLineWidth = ((numberOfTimePs - 1)*timeStep*100)/(100 - (offsetDistance + laggingDistance));
 
@@ -149,13 +149,6 @@ function Layout() {
         } else {
             newTruckPositions = [x, x + 1, x + 2];
         }
-/*         //setOrder before set dispTrucks
-        let newOrders = [];
-        for(let truckPosition of displayedTrucks){
-            newOrders.push(...trucks[truckPosition].assignedOrderId);
-        }
-        const newOrderData = orders.filter(order => newOrders.includes(order.id));
-        setOrders(newOrderData); */
         //change the set of trucks
         if (!filterOn) setDisplayedTrucks(newTruckPositions);
     }, [verticalPosition, filterOn, trucks]);
@@ -190,7 +183,7 @@ function Layout() {
     return (
         <div className="container">
             <nav className="searchField">
-                <h1 className="fieldTitle">Truck tracking board</h1>
+                <h1 className="fieldTitle">Truck board</h1>
                 <div className="inputGroup">
                     <label htmlFor="searchField">Filter by truck name: </label>
                     <input type="text" id="searchField" className="searchBar" placeholder="filter by truck name(s) max. 4" onChange={handleSearchRequest}></input>
