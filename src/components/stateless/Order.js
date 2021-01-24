@@ -4,7 +4,6 @@ import {formatDate} from '../../utils/utilities';
 function Order({name, startPoint, endPoint, timeLineWidth, firstCurrentTimePoint}) {
 
     const lastTimeStamp = firstCurrentTimePoint + timeLineWidth;
-    console.log("width", timeLineWidth, "fCTp", firstCurrentTimePoint, "end", formatDate(firstCurrentTimePoint + timeLineWidth));
     const calcOnsetPoint = () => {
         let onsetPoint;
         if (startPoint > firstCurrentTimePoint && startPoint < lastTimeStamp){

@@ -115,13 +115,6 @@
   background: #555;
 }
 
-.dateText {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  color: #fff;
-}
-
 .flagIcon {
   position: absolute;
   top: 0;
@@ -175,6 +168,8 @@
   transform: scaleX(-1); /* Standard */
 
   filter: FlipH; /* IE 6/7/8 */
+  width: 6rem;
+  height: inherit;
 }
 
 .tName {

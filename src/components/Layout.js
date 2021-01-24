@@ -102,7 +102,6 @@ function Layout() {
         } else {
             setFilterOn(false);
             setDefaults();
-            console.log("in the setDefaults branch");
         }
 
         if (newPositions.length > 4){
@@ -159,7 +158,7 @@ function Layout() {
         setOrders(newOrderData); */
         //change the set of trucks
         if (!filterOn) setDisplayedTrucks(newTruckPositions);
-    }, [verticalPosition]);
+    }, [verticalPosition, filterOn, trucks]);
 
     useEffect(() => {
         //update orders based on new trucks
@@ -191,9 +190,9 @@ function Layout() {
     return (
         <div className="container">
             <nav className="searchField">
-                <h1 class="fieldTitle">Truck tracking board</h1>
+                <h1 className="fieldTitle">Truck tracking board</h1>
                 <div className="inputGroup">
-                    <label for="searchField">Filter by truck name: </label>
+                    <label htmlFor="searchField">Filter by truck name: </label>
                     <input type="text" id="searchField" className="searchBar" placeholder="filter by truck name(s) max. 4" onChange={handleSearchRequest}></input>
                 </div>
             </nav>
