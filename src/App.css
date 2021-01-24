@@ -1,38 +1,209 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600&family=Roboto:wght@300;400;700&display=swap");
+
+:root {
+  --timePointHeight: 70vh;
+  --softWhite: #fcfcfc;
+  --darkColor: #444;
+  --borderColor: #888;
+  --primaryColor: #1f5195;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.hidden {
+  display: none;
 }
 
-.App-header {
-  background-color: #282c34;
+.container {
+  background: linear-gradient(
+    to left,
+    rgba(250, 250, 250, 1),
+    rgba(200, 200, 200, 1)
+  );
   min-height: 100vh;
+  max-height: 100%;
+  color: var(--darkColor);
+  font-family: "Roboto", sans-serif;
+}
+
+.fieldTitle {
+  font-family: "Bodoni Moda", serif;
+  color: #222;
+}
+
+.searchField {
+  display: flex;
+  height: 20vh;
+  width: 80vw;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.searchBar {
+  border: 1px solid #ccc;
+  border-radius: 1999px;
+  padding: 0.5rem 1.5rem;
+  max-width: 50%;
+  min-width: 300px;
+  font-family: inherit;
+}
+
+.displayField {
+  width: 80vw;
+  height: var(--timePointHeight);
+  position: relative;
+  margin: auto;
+  border: 1px solid #555;
+}
+
+.timeLine {
+  position: absolute;
+  top: 0;
+  left: 10vw;
+  border-top: 3px solid var(--primaryColor);
+  opacity: 0.75;
+  height: 100%;
+  width: 70vw;
+  z-index: 10;
+}
+
+/*TimePoint*/
+
+.timePoint {
   display: flex;
   flex-direction: column;
+  align-items: left;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-3.5rem);
+}
+
+.timePointBox {
+  border: 1px solid #ccc;
+  border-left: 2px solid var(--darkColor);
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 3rem;
+  position: relative;
+  background: var(--softWhite);
 }
 
-.App-link {
-  color: #61dafb;
+.lineHead {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid #555;
+  background: var(--softWhite);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.verticalLine {
+  height: var(--timePointHeight);
+  width: 2px;
+  background: #555;
+}
+
+.dateText {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: #fff;
+}
+
+.flagIcon {
+  position: absolute;
+  top: 0;
+  left: -2rem;
+}
+
+/* Order */
+
+.order {
+  height: 100%;
+  border: 1px solid var(--darkColor);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--softWhite);
+  display: flex;
+  align-items: center;
+  justify-items: space-around;
+  padding: 0 1rem;
+}
+
+.orderName {
+  color: var(--primaryColor);
+  font-weight: 700;
+}
+
+/* truck */
+
+.truck {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
+
+.truckName {
+  padding: 0.5rem;
+  position: relative;
+  width: 4.5rem;
+  left: -6.5rem;
+}
+
+.truckIcon {
+  -moz-transform: scaleX(-1); /* Gecko */
+  -o-transform: scaleX(-1); /* Opera */
+  -webkit-transform: scaleX(-1); /* Webkit */
+  transform: scaleX(-1); /* Standard */
+
+  filter: FlipH; /* IE 6/7/8 */
+}
+
+.tName {
+  position: absolute;
+  top: 1.7rem;
+  left: 2.2rem;
+  color: var(--softWhite);
+}
+
+.line {
+  height: 2px;
+  border: 1px solid var(--darkColor);
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+/* Vertical slider */
+.verticalSlider {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: -1rem;
+}
+
+/* Horizontal slider */
+.horizontalSlider {
+  position: absolute;
+  width: 100%;
+  bottom: -1rem;
+  left: 0;
 }
