@@ -68,13 +68,14 @@
 }
 
 .displayField::before {
-  content: "Set which trucks do you want to see";
+  content: "Change displayed trucks";
   position: absolute;
   top: 50%;
-  left: -10.5rem;
+  left: -7.5rem;
   transform: rotate(-90deg);
   color: var(--primaryColor);
-  font-weight: 300;
+  font-weight: 400;
+  opacity: 0.8;
 }
 
 .timeLine {
