@@ -59,6 +59,11 @@
   font-family: inherit;
 }
 
+.searchBar:focus {
+  outline: none;
+  border: 1px solid var(--primaryColor);
+}
+
 .displayField {
   width: var(--fieldWidth);
   height: var(--timePointHeight);

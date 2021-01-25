@@ -114,11 +114,11 @@ function Layout() {
             setDefaults();
         }
 
-        if (newPositions.length > 4){
-            newPositions.splice(0,4);
+        if (newPositions.length > 3){
+            newPositions.splice(0,3);
         }
 
-        setDisplayedTrucks(newPositions);
+        if (newPositions.length > 0) setDisplayedTrucks(newPositions);
 
     }
 
@@ -200,7 +200,7 @@ function Layout() {
                 <h1 className="fieldTitle">Truck board</h1>
                 <div className="inputGroup">
                     <label htmlFor="searchField">Filter by truck name: </label>
-                    <input type="text" id="searchField" className="searchBar" placeholder="filter by truck name(s) max. 4" onChange={handleSearchRequest}></input>
+                    <input type="text" id="searchField" className="searchBar" placeholder="filter by truck name(s) max. 3" onChange={handleSearchRequest}></input>
                 </div>
             </nav>
             {data && datesShown.length > 0 && !isNaN(datesShown[0]) && <div className="displayField">
