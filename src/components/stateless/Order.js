@@ -19,22 +19,27 @@ function Order({name, startPoint, endPoint, timeLineWidth, firstCurrentTimePoint
         const lastTimeStamp = firstCurrentTimePoint + timeLineWidth;
         if (startPoint > firstCurrentTimePoint && startPoint < lastTimeStamp){
             if (lastTimeStamp > endPoint){
-                calcWidth = Math.floor(((endPoint - startPoint)/timeLineWidth)*100) + "%" ;
+                calcWidth = Math.floor(((endPoint - startPoint)/timeLineWidth)*100);
             } else {
-                calcWidth = Math.floor(((lastTimeStamp - startPoint)/timeLineWidth)*100) + "%" ;
+                calcWidth = Math.floor(((lastTimeStamp - startPoint)/timeLineWidth)*100);
             } 
-        } else {
-            calcWidth = "0%";
+        } else if (startPoint != 0 && startPoint < firstCurrentTimePoint && endPoint < lastTimeStamp) {
+            calcWidth = Math.floor(((endPoint - firstCurrentTimePoint)/timeLineWidth)*100);
+            if (calcWidth < 6) calcWidth = 0;
+        }
+        else {
+            calcWidth = 0;
         }
         return calcWidth;
     }
 
+    const widthVal = calcWidth() + "%";
 
     return (
-        <div className={calcWidth() !== "0%" ? "order" : "hidden"} 
-            style={{left: calcOnsetPoint(), width: calcWidth()}}
+        <div className={calcWidth() !== 0 ? "order" : "hidden"} 
+            style={{left: calcOnsetPoint(), width: widthVal}}
             >
-            {startPoint < lastTimeStamp - timeLineWidth/4 && <div className="orderContent">
+            {(calcWidth() > 20) && <div className="orderContent">
                 <span className="orderName">{name}</span>  - due to: { formatDate(endPoint)}
                 </div>} 
         </div>
