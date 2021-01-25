@@ -26,6 +26,8 @@ function Order({name, startPoint, endPoint, timeLineWidth, firstCurrentTimePoint
         } else if (startPoint !== 0 && startPoint < firstCurrentTimePoint && endPoint < lastTimeStamp) {
             calcWidth = Math.floor(((endPoint - firstCurrentTimePoint)/timeLineWidth)*100);
             if (calcWidth < 6) calcWidth = 0;
+        } else if (startPoint < firstCurrentTimePoint && endPoint > lastTimeStamp){
+            calcWidth = 100;
         }
         else {
             calcWidth = 0;
