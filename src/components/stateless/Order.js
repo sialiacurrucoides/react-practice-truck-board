@@ -23,7 +23,7 @@ function Order({name, startPoint, endPoint, timeLineWidth, firstCurrentTimePoint
             } else {
                 calcWidth = Math.floor(((lastTimeStamp - startPoint)/timeLineWidth)*100);
             } 
-        } else if (startPoint != 0 && startPoint < firstCurrentTimePoint && endPoint < lastTimeStamp) {
+        } else if (startPoint !== 0 && startPoint < firstCurrentTimePoint && endPoint < lastTimeStamp) {
             calcWidth = Math.floor(((endPoint - firstCurrentTimePoint)/timeLineWidth)*100);
             if (calcWidth < 6) calcWidth = 0;
         }

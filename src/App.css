@@ -67,6 +67,16 @@
   border: 1px solid #555;
 }
 
+.displayField::before {
+  content: "Set which trucks do you want to see";
+  position: absolute;
+  top: 50%;
+  left: -10.5rem;
+  transform: rotate(-90deg);
+  color: var(--primaryColor);
+  font-weight: 300;
+}
+
 .timeLine {
   position: absolute;
   top: 0;
@@ -271,7 +281,12 @@
     font-size: 0.8rem;
   }
 
+  .displayField::before {
+    display: none;
+  }
+
   .verticalSlider {
     left: -1.5rem;
+    position: relative;
   }
 }
