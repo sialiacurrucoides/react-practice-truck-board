@@ -87,6 +87,16 @@ function Layout() {
         setDisplayedTrucks(currentTrucksPositions);
     }
 
+    const calculateDefaultPositions = () => {
+        let currentTrucksPositions = []; 
+        for(let i = 0; i < numberOfTimePs; i++){
+            currentTrucksPositions.push(i);
+        }
+        return currentTrucksPositions;
+    }
+
+    //handler functions
+
     const handleSearchRequest = (ev) => {
         const text = ev.target.value;
         const truckArray = text.split(" ");
@@ -112,15 +122,21 @@ function Layout() {
 
     }
 
-
-    const calculateDefaultPositions = () => {
-        let currentTrucksPositions = []; 
-        for(let i = 0; i < numberOfTimePs; i++){
-            currentTrucksPositions.push(i);
-        }
-        return currentTrucksPositions;
+    const progressForward = () => {
+        setHorizontalPosition( prevPos => {
+            if (prevPos < 100) return (prevPos + 1);
+            return prevPos;
+        });
     }
 
+    const progressBackward = () => {
+        setHorizontalPosition( prevPos => {
+            if (prevPos > 0) return (prevPos - 1);
+            return prevPos;
+        });
+    }
+
+    //after render events
     useEffect(() => {
 /*         axios.get("https://nexogenshares.blob.core.windows.net/recruitment/trucktimeline.json")
         .then(response => {
@@ -190,6 +206,8 @@ function Layout() {
             {data && datesShown.length > 0 && !isNaN(datesShown[0]) && <div className="displayField">
                 <VerticalSlider position={verticalPosition} changeVerticalPosition={setVerticalPosition} />
                 <div className="timeLine">
+                    <div className="toLeft" onClick={progressBackward}>&#8249;</div>
+                    <div className="toRight" onClick={progressForward}>&#8250;</div>
                     { datesShown.map( date => <TimePoint key={date} date={formatDate(date)} position={calculateTimePointOffset(date)} />) }
                     { orders.length > 0 && trucks.filter((truck,index) => displayedTrucks.includes(index) ).map((truck, inx) => <Truck 
                             key={truck.name}
