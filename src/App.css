@@ -255,9 +255,20 @@
   }
 
   .tName {
-    left: 3rem;
+    left: 2.8rem;
     background: var(--primaryColor);
-    padding: 0.5rem;
+    padding: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .timePointBox {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.25rem;
+    width: 5rem;
+  }
+
+  .orderContent {
+    font-size: 0.8rem;
   }
 
   .verticalSlider {
