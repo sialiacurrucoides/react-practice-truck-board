@@ -219,7 +219,7 @@ function Layout() {
                             let ordArr = data.orders.filter( ord => ord.id === order)
                             return ordArr[0];})}/>
                         )}
-                    <HorizontalSlider changeHorizontalPosition={setHorizontalPosition}/>
+                    <HorizontalSlider hPosition={horizontalPosition} changeHorizontalPosition={setHorizontalPosition}/>
                 </div>
             </div> }
         </div>

@@ -12,13 +12,14 @@ function valuetext(value) {
   return `${value}`;
 }
 
-export default function HorizontalSlider({changeHorizontalPosition}) {
+export default function HorizontalSlider({hPosition, changeHorizontalPosition}) {
   const classes = useStyles();
-
+  console.log(hPosition);
   return (
     <div className="horizontalSlider" >
       <div className={classes.root}>
         <Slider
+          value={hPosition}
           orientation="horizontal"
           getAriaValueText={valuetext}
           defaultValue={0}
