@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@600&family=Roboto:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@700&family=Roboto:wght@300;400;700&display=swap");
 
 :root {
   --timePointHeight: 65vh;
@@ -36,6 +36,7 @@
 .fieldTitle {
   font-family: "Bodoni Moda", serif;
   color: #222;
+  font-weight: 700;
 }
 
 .searchField {
@@ -134,6 +135,10 @@
 .orderName {
   color: var(--primaryColor);
   font-weight: 700;
+}
+
+.orderContent {
+  font-weight: 300;
 }
 
 /* truck */

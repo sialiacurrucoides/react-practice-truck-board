@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Order from './Order';
+import {textDateToTimeStamp} from '../../utils/utilities';
 
 function Truck({truckName, orders, fromTop, timeLineWidth, firstCurrentTimePoint}) {
 
@@ -24,8 +25,8 @@ function Truck({truckName, orders, fromTop, timeLineWidth, firstCurrentTimePoint
             name={order.id} 
             timeLineWidth={timeLineWidth}
             firstCurrentTimePoint={firstCurrentTimePoint}
-            startPoint={Number(new Date(order.from).getTime())}
-            endPoint={Number(new Date(order.to).getTime())} />)}
+            startPoint={Number(textDateToTimeStamp(order.from))}
+            endPoint={Number(textDateToTimeStamp(order.to))} />)}
         </div>
     )
 }

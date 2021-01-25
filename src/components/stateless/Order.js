@@ -11,6 +11,7 @@ function Order({name, startPoint, endPoint, timeLineWidth, firstCurrentTimePoint
         } else {
             onsetPoint = "0%";
         }
+        console.log("onsetPoint", onsetPoint);
         return onsetPoint;        
     }
 
@@ -26,6 +27,7 @@ function Order({name, startPoint, endPoint, timeLineWidth, firstCurrentTimePoint
         } else {
             calcWidth = "0%";
         }
+        console.log("calcWidth", calcWidth);
         return calcWidth;
     }
 

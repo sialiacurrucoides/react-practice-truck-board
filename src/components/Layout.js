@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-//import data from '../data.json';
-import {formatDate} from '../utils/utilities';
+//import dataRead from '../data.json';
+import {formatDate, textDateToTimeStamp} from '../utils/utilities';
 import TimePoint from './stateless/TimePoint';
 import Truck from './stateless/Truck';
 import VerticalSlider from './stateless/VerticalSlider';
@@ -46,20 +46,20 @@ function Layout() {
         return currOffset;
     }
 
-    const calculateMinTime = () => {
-        const fromDates = orders.map(order => (new Date(order.from).getTime()));
+    const calculateMinTime = (ords) => {
+        const fromDates = ords.map(order => textDateToTimeStamp(order.from)); // in chrome works even the new Date(order.from).getTime()
         const minTime = Math.min(...fromDates);
         return minTime;
     }
 
     const calculateMaxTime = () => {
-        const toDates = orders.map(order => (new Date(order.to).getTime()));
+        const toDates = orders.map(order => textDateToTimeStamp(order.to));
         const maxTime = Math.max(...toDates);
         return maxTime;
     }
 
     const calculateHorizontalUnit = () => {
-        const minTime = calculateMinTime();
+        const minTime = calculateMinTime(orders);
         const maxTime = calculateMaxTime();
         //calc diff
         const timeDiff = maxTime - minTime;
@@ -121,8 +121,6 @@ function Layout() {
         return currentTrucksPositions;
     }
 
-
-
     useEffect(() => {
 /*         axios.get("https://nexogenshares.blob.core.windows.net/recruitment/trucktimeline.json")
         .then(response => {
@@ -135,7 +133,7 @@ function Layout() {
                 setTrucks(response.data.trucks);
                 let currentTrucksPositions = calculateDefaultPositions();
                 setDisplayedTrucks(currentTrucksPositions);
-              });
+              }).catch(error => console.log("request error", error));
         }, []);
 
 
@@ -162,7 +160,7 @@ function Layout() {
             }
             const newOrderData = data.orders.filter(order => newOrders.includes(order.id));
             setOrders(newOrderData);
-            const firstTimePoint = calculateMinTime();
+            const firstTimePoint = calculateMinTime(newOrderData);
             const timePoints = generateDisplayedTimePoints(firstTimePoint, numberOfTimePs);
             if (orders.length > 0) setDatesShown(timePoints);
         }
@@ -171,7 +169,7 @@ function Layout() {
 
     useEffect(() => {
         const horizontalUnit = calculateHorizontalUnit();
-        const newFirstTimePoint = calculateMinTime() + horizontalPosition*horizontalUnit;
+        const newFirstTimePoint = calculateMinTime(orders) + horizontalPosition*horizontalUnit;
         const newDisplayedPoints = [];
         for (let i = 0; i < numberOfTimePs; i++){
             newDisplayedPoints.push(newFirstTimePoint + timeStep*i);
@@ -189,7 +187,7 @@ function Layout() {
                     <input type="text" id="searchField" className="searchBar" placeholder="filter by truck name(s) max. 4" onChange={handleSearchRequest}></input>
                 </div>
             </nav>
-            {data && datesShown.length > 0 && <div className="displayField">
+            {data && datesShown.length > 0 && !isNaN(datesShown[0]) && <div className="displayField">
                 <VerticalSlider position={verticalPosition} changeVerticalPosition={setVerticalPosition} />
                 <div className="timeLine">
                     { datesShown.map( date => <TimePoint key={date} date={formatDate(date)} position={calculateTimePointOffset(date)} />) }
