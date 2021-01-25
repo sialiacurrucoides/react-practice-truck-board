@@ -14,7 +14,6 @@ function valuetext(value) {
 
 export default function HorizontalSlider({hPosition, changeHorizontalPosition}) {
   const classes = useStyles();
-  console.log(hPosition);
   return (
     <div className="horizontalSlider" >
       <div className={classes.root}>

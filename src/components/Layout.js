@@ -5,6 +5,7 @@ import TimePoint from './stateless/TimePoint';
 import Truck from './stateless/Truck';
 import VerticalSlider from './stateless/VerticalSlider';
 import HorizontalSlider from './stateless/HorizontalSlider';
+import UserFeedback from './stateless/UserFeedback';
 import axios from 'axios';
 
 function Layout() {
@@ -15,6 +16,7 @@ function Layout() {
     const truckLineOffset= 10;
     const timeStep = 4*60*60*1000; //4 hours
     const timeLineWidth = ((numberOfTimePs - 1)*timeStep*100)/(100 - (offsetDistance + laggingDistance));
+    const feedbackTime = 1200;
 
     const [data, setData] = useState();
     const [trucks, setTrucks] = useState([]);
@@ -24,6 +26,7 @@ function Layout() {
     const [verticalPosition, setVerticalPosition] = useState(100);
     const [horizontalPosition, setHorizontalPosition] = useState(0);
     const [filterOn, setFilterOn] = useState(false);
+    const [message, setMessage] = useState("");
 
     const calculateAbsoluteT0 = () => {
         const t0 = datesShown[0];
@@ -125,6 +128,10 @@ function Layout() {
     const progressForward = () => {
         setHorizontalPosition( prevPos => {
             if (prevPos < 100) return (prevPos + 1);
+            setMessage("No later timepoint assigned to these sets of trucks.");
+            setTimeout(() => {
+                setMessage("");
+            }, feedbackTime);
             return prevPos;
         });
     }
@@ -132,6 +139,10 @@ function Layout() {
     const progressBackward = () => {
         setHorizontalPosition( prevPos => {
             if (prevPos > 0) return (prevPos - 1);
+            setMessage("No earlier timepoint assigned to these sets of trucks.");
+            setTimeout(() => {
+                setMessage("");
+            }, feedbackTime);
             return prevPos;
         });
     }
@@ -196,6 +207,7 @@ function Layout() {
 
     return (
         <div className="container">
+            {message !== "" && <UserFeedback message={message} />}
             <nav className="searchField">
                 <h1 className="fieldTitle">Truck board</h1>
                 <div className="inputGroup">
