@@ -87,6 +87,7 @@
   position: absolute;
   top: -0.25rem;
   cursor: pointer;
+  z-index: 30;
 }
 
 .toLeft {
@@ -200,7 +201,7 @@
 
 .line {
   height: 2px;
-  border: 1px solid var(--darkColor);
+  border: 1px solid var(--primaryColor);
   width: 100%;
   position: absolute;
   left: 0;
